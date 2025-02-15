@@ -323,26 +323,29 @@ void HCSR04Sensor::echoInterrupt(uint8_t index) {
 	if (this->triggerTimes[index] > 0 && this->echoTimes[index] == 0) this->echoTimes[index] = micros();
 }
 
-void HCSR04Sensor::triggerInterrupt0() { HCSR04.triggerInterrupt(0); }
-void HCSR04Sensor::triggerInterrupt1() { HCSR04.triggerInterrupt(1); }
-void HCSR04Sensor::triggerInterrupt2() { HCSR04.triggerInterrupt(2); }
-void HCSR04Sensor::triggerInterrupt3() { HCSR04.triggerInterrupt(3); }
-void HCSR04Sensor::triggerInterrupt4() { HCSR04.triggerInterrupt(4); }
-void HCSR04Sensor::triggerInterrupt5() { HCSR04.triggerInterrupt(5); }
-void HCSR04Sensor::triggerInterrupt6() { HCSR04.triggerInterrupt(6); }
-void HCSR04Sensor::triggerInterrupt7() { HCSR04.triggerInterrupt(7); }
-void HCSR04Sensor::triggerInterrupt8() { HCSR04.triggerInterrupt(8); }
-void HCSR04Sensor::triggerInterrupt9() { HCSR04.triggerInterrupt(9); }
+// On ESP8266, ensures that the ISRs are placed in the IRAM to prevent the "ISR not in IRAM" error.
+#ifdef ESP8266
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt0() { HCSR04.triggerInterrupt(0); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt1() { HCSR04.triggerInterrupt(1); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt2() { HCSR04.triggerInterrupt(2); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt3() { HCSR04.triggerInterrupt(3); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt4() { HCSR04.triggerInterrupt(4); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt5() { HCSR04.triggerInterrupt(5); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt6() { HCSR04.triggerInterrupt(6); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt7() { HCSR04.triggerInterrupt(7); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt8() { HCSR04.triggerInterrupt(8); }
+void IRAM_ATTR HCSR04Sensor::triggerInterrupt9() { HCSR04.triggerInterrupt(9); }
 
-void HCSR04Sensor::echoInterrupt0() { HCSR04.echoInterrupt(0); }
-void HCSR04Sensor::echoInterrupt1() { HCSR04.echoInterrupt(1); }
-void HCSR04Sensor::echoInterrupt2() { HCSR04.echoInterrupt(2); }
-void HCSR04Sensor::echoInterrupt3() { HCSR04.echoInterrupt(3); }
-void HCSR04Sensor::echoInterrupt4() { HCSR04.echoInterrupt(4); }
-void HCSR04Sensor::echoInterrupt5() { HCSR04.echoInterrupt(5); }
-void HCSR04Sensor::echoInterrupt6() { HCSR04.echoInterrupt(6); }
-void HCSR04Sensor::echoInterrupt7() { HCSR04.echoInterrupt(7); }
-void HCSR04Sensor::echoInterrupt8() { HCSR04.echoInterrupt(8); }
-void HCSR04Sensor::echoInterrupt9() { HCSR04.echoInterrupt(9); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt0() { HCSR04.echoInterrupt(0); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt1() { HCSR04.echoInterrupt(1); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt2() { HCSR04.echoInterrupt(2); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt3() { HCSR04.echoInterrupt(3); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt4() { HCSR04.echoInterrupt(4); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt5() { HCSR04.echoInterrupt(5); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt6() { HCSR04.echoInterrupt(6); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt7() { HCSR04.echoInterrupt(7); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt8() { HCSR04.echoInterrupt(8); }
+void IRAM_ATTR HCSR04Sensor::echoInterrupt9() { HCSR04.echoInterrupt(9); }
+#endif
 
 HCSR04Sensor HCSR04;
